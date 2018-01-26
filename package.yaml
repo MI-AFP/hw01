@@ -21,7 +21,6 @@ description:         Please see the README on Github at <https://github.com/MI-A
 
 dependencies:
 - base >= 4.7 && < 5
-- hashable
 
 library:
   source-dirs: src
@@ -48,3 +47,4 @@ tests:
     dependencies:
     - hw01
     - hspec
+    - hashable

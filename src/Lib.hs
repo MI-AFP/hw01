@@ -8,6 +8,7 @@ module Lib
     , stringSplitToWords
     , allType
     , aesonAuthor
+    , pluralizeFunc
     ) where
 
 -- #01 = Area of trapezoid (check tests if not sure)
@@ -24,13 +25,11 @@ infoReversed str = undefined
 -- #04 = Count number of digits of given integer
 -- (It can be done just by looking up suitable functions.
 --  Try it WITHOUT conditions and recursion!)
-countDigits :: Integer -> Word
 countDigits x = undefined
 
 -- #05 = Return euclidean distance of 2 2D points
 -- (use variables x1, y1, x2, y2 in expression instead of undefined,
 --  try not to use multiplication)
-distance2D :: Num a => (a, a) -> (a, a) -> Double
 distance2D (x1, y1) (x2, y2) = undefined
 
 -- #06 = Complete the function to translate natural number to

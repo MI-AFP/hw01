@@ -8,6 +8,9 @@ import Lib
 main :: IO ()
 main = hspec spec
 
+-- Compare floating numbers
+approxEq a b = 0.000001 > abs (a - b)
+
 spec :: Spec
 spec = do
   describe "#01 trapezoidArea" $
@@ -15,7 +18,7 @@ spec = do
       trapezoidArea 5 5 2 `shouldBe` 10
       trapezoidArea 5 2 7 `shouldBe` 24.5
       trapezoidArea 10 2 15 `shouldBe` 90
-      trapezoidArea 7.5 6.3 2.1 `shouldBe` 14.49
+      approxEq (trapezoidArea 7.5 6.3 2.1) 14.49 `shouldBe` True
       trapezoidArea 2 2 0 `shouldBe` 0
       trapezoidArea 0 0 5 `shouldBe` 0
 
@@ -59,18 +62,18 @@ spec = do
     it "computes 2D euclidean distance" $ do
       distance2D (5, 5) (0, 0) `shouldBe` (5 * sqrt 2)
       distance2D (1, 5) (7, 3) `shouldBe` (2 * sqrt 10)
-      distance2D (12, -3) (-1, 3) `shouldBe` 13
+      distance2D (12, 3) (-1, 3) `shouldBe` 13
       distance2D (-10, 5) (10, 15) `shouldBe` (10 * sqrt 5)
     it "computes zero distance" $ do
       distance2D (0, 0) (0, 0) `shouldBe` 0
       distance2D (7, -2) (7, -2) `shouldBe` 0
-    it "is commutative"
+    it "is commutative" $ do
       distance2D (0, 5) (0, 3) `shouldBe` 2
       distance2D (0, 3) (0, 5) `shouldBe` 2
 
   describe "#06 natToBinstring" $ do
     it "returns empty string for 0" $
-      natToBinstring 0 `shouldBe` 0
+      natToBinstring 0 `shouldBe` ""
     it "returns valid binary string for powers of two" $ do
       natToBinstring 1 `shouldBe` "1"
       natToBinstring 2 `shouldBe` "10"
@@ -107,3 +110,27 @@ spec = do
       length aesonAuthor `shouldBe` 16
     it "should match hash" $
       hash aesonAuthor `shouldBe` (-4676277736506712894)
+
+  describe "#10 pluralizeFunc" $ do
+    it "pluralizes with s" $ do
+      pluralizeFunc "pizza" `shouldBe` "pizzas"
+      pluralizeFunc "car" `shouldBe` "cars"
+      pluralizeFunc "science" `shouldBe` "sciences"
+      pluralizeFunc "computer" `shouldBe` "computers"
+    it "pluralizes with es" $ do
+      pluralizeFunc "penny" `shouldBe` "pennies"
+      pluralizeFunc "bus" `shouldBe` "buses"
+      pluralizeFunc "tax" `shouldBe` "taxes"
+      pluralizeFunc "tomato" `shouldBe` "tomatoes"
+    it "pluralizes irregular and tricky" $ do
+      pluralizeFunc "tooth" `shouldBe` "teeth"
+      pluralizeFunc "wolf" `shouldBe` "wolves"
+      pluralizeFunc "analysis" `shouldBe` "analyses"
+      pluralizeFunc "deer" `shouldBe` "deer"
+      pluralizeFunc "goose" `shouldBe` "geese"
+      pluralizeFunc "phenomenon" `shouldBe` "phenomena"
+    it "doesn't pluralize plural" $ do
+      pluralizeFunc "ways" `shouldBe` "ways"
+      pluralizeFunc "computers" `shouldBe` "computers"
+      pluralizeFunc "people" `shouldBe` "people"
+      pluralizeFunc "analyses" `shouldBe` "analyses"
