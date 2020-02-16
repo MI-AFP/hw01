@@ -75,41 +75,49 @@ spec = do
       manhattanDistance (0, 5) (0, 3) `shouldBe` 2
       manhattanDistance (0, 3) (0, 5) `shouldBe` 2
 
-  describe "#06 binboolsToNat" $ do
+  describe "#06 binstrToNat" $ do
     it "returns for trivials" $ do
-      binboolsToNat [] `shouldBe` 0
-      binboolsToNat [False] `shouldBe` 0
-      binboolsToNat [True] `shouldBe` 1
+      binstrToNat "" `shouldBe` 0
+      binstrToNat "0" `shouldBe` 0
+      binstrToNat "1" `shouldBe` 1
     it "returns valid binary string for powers of two" $ do
-      binboolsToNat [True, False] `shouldBe` 2
-      binboolsToNat [True, False, False, False] `shouldBe` 8
-      binboolsToNat ([True] ++ replicate 10 False) `shouldBe` 1024
-      binboolsToNat ([True] ++ replicate 16 False) `shouldBe` 65536
+      binstrToNat "10" `shouldBe` 2
+      binstrToNat "1000" `shouldBe` 8
+      binstrToNat ("1" ++ replicate 10 '0') `shouldBe` 1024
+      binstrToNat ("1" ++ replicate 16 '0') `shouldBe` 65536
     it "returns valid binary string for random" $ do
-      binboolsToNat [True, False, True, True] `shouldBe` 11
-      binboolsToNat [True, True, True, True] `shouldBe` 15
-      binboolsToNat [True, False, True, False, True, True, False, True] `shouldBe` 173
-      binboolsToNat (replicate 8 True) `shouldBe` 255
-      binboolsToNat ([True, False, False] ++ replicate 8 True) `shouldBe` 1279
+      binstrToNat "1011" `shouldBe` 11
+      binstrToNat "01111" `shouldBe` 15
+      binstrToNat "10101101" `shouldBe` 173
+      binstrToNat (replicate 8 '1') `shouldBe` 255
+      binstrToNat ("100" ++ replicate 8 '1') `shouldBe` 1279
 
-  describe "#07 makeMultilineString" $ do
-    it "joins with new line" $ do
-      makeMultilineString ["a", "b", "c", "d"] `shouldBe` "a\nb\nc\nd\n"
-      makeMultilineString ["single"] `shouldBe` "single\n"
-    it "returns empty string for no-lines" $ do
-      makeMultilineString [] `shouldBe` ""
+  describe "#07 splitWsString" $ do
+    it "works with single WS symbols" $ do
+      splitWsString "a\nb\nc\nd" `shouldBe` ["a", "b", "c", "d"]
+      splitWsString "a\rb\rc\rd" `shouldBe` ["a", "b", "c", "d"]
+      splitWsString "a\tb\tc\td" `shouldBe` ["a", "b", "c", "d"]
+      splitWsString "a b c d" `shouldBe` ["a", "b", "c", "d"]
+    it "ignores extra WS symbols" $ do
+      splitWsString " single_one  \n" `shouldBe` ["single_one"]
+      splitWsString "  a b   c  d   " `shouldBe` ["a", "b", "c", "d"]
+      splitWsString "a\t b \t\n c\r\nd\n" `shouldBe` ["a", "b", "c", "d"]
+    it "returns empty string for empty string" $ do
+      splitWsString "" `shouldBe` []
+      splitWsString " " `shouldBe` []
+      splitWsString " \n\t\r" `shouldBe` []
 
-  describe "#08 iterateType" $ do
+  describe "#08 flipType" $ do
     it "has length equal to 40" $
-      length iterateType `shouldBe` 20
+      length flipType `shouldBe` 28
     it "should match hash" $
-      hash iterateType `shouldBe` 3584283388811533240
+      hash flipType `shouldBe` (-1303639695465303688)
 
-  describe "#09 pandocAuthor" $ do
+  describe "#09 unorderedContainersAuthor" $ do
     it "has length equal to 15" $
-      length pandocAuthor `shouldBe` 15
+      length unorderedContainersAuthor `shouldBe` 12
     it "should match hash" $
-      hash pandocAuthor `shouldBe` (-447579347104121658)
+      hash unorderedContainersAuthor `shouldBe` (-6700700548817314600)
 
   describe "#10 pluralizeFunc" $ do
     it "pluralizes with s" $ do

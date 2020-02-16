@@ -4,21 +4,21 @@ module Lib
     , infoBackwards
     , countDigits
     , manhattanDistance
-    , binboolsToNat
-    , makeMultilineString
-    , iterateType
-    , pandocAuthor
+    , binstrToNat
+    , splitWsString
+    , flipType
+    , unorderedContainersAuthor
     , pluralizeFunc
     ) where
 
--- #01 = Area of convex regular polygon (check tests if not sure, use Pi from Prelude)
+-- #01 = Area of convex regular polygon (check tests if not sure; use Pi from Prelude)
 convexRegularPolygonArea n s = undefined
 
--- #02 = Write boolean expression to check if year is leap
+-- #02 = Write boolean expression (avoid if-then-else) to check if year is leap
 leapYear :: Word -> Bool
 leapYear year = undefined
 
--- #03 = Message about reversed string ("abc is reversed cba")
+-- #03 = Message about reversed string ("'abc' is 'cba' backwards")
 infoBackwards :: String -> String
 infoBackwards str = undefined
 
@@ -31,29 +31,27 @@ countDigits x = undefined
 -- (use variables x1, y1, x2, y2 in expression instead of undefined)
 manhattanDistance (x1, y1) (x2, y2) = undefined
 
--- #06 = Complete the function to translate natural number to
---       binary string (17 -> "1001", 0 -> "", 2 -> "10")
--- (You can introduce new helper function or use prepared if-then-else
---  by replacing True with condition, empty strings and add recursion.
---  The if-then-else is expression as any other in Haskell, try to be DRY)
-binboolsToNat :: [Bool] -> Word
-binboolsToNat [] = 0 -- no need to change this, end of recursion
-binboolsToNat (False:bs) = undefined -- False is head of list, bs is the tail
-binboolsToNat (True:bs) = undefined -- True is head of list, bs is the tail
+-- #06 = Complete the function to translate a binary string to natural number
+--       binary string ("1001" -> 17, "" -> 0, "10" -> 2)
+--       (Do not forget that String = [Char])
+binstrToNat :: String -> Word
+binstrToNat [] = 0 -- no need to change this, end of recursion
+binstrToNat ('0':rest) = undefined -- 0 is on head, rest is the tail
+binstrToNat ('1':rest) = undefined -- 1 is on head, rest is the tail
 
--- #07 = Lookup function that makes a multiline string from list of lines
-makeMultilineString :: [String] -> String
-makeMultilineString = undefined
+-- #07 = Lookup a function that splits String by whitespaces
+splitWsString :: String -> [String]
+splitWsString = undefined
 
--- #08 = What is the type of function "iterate"?
+-- #08 = What is the type of function "flip"?
 -- (For example for "odd" it would be "Integral a => a -> Bool")
-iterateType :: String
-iterateType = "<complete here>"
+flipType :: String
+flipType = "<complete the type here>"
 
--- #09 = Who is author of "pandoc" package?
+-- #09 = Who is author of "unordered-containers" package?
 -- (For example for "QuickCheck" it would be "Koen Claessen")
-pandocAuthor :: String
-pandocAuthor = "<complete here>"
+unorderedContainersAuthor :: String
+unorderedContainersAuthor = "<complete the author here>"
 
 -- #10 = You need a function that returns pluralized form of
 --       English string ("letter" -> "letters", "tooth -> teeth", ...)
