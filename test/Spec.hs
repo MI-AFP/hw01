@@ -75,49 +75,55 @@ spec = do
       manhattanDistance (0, 5) (0, 3) `shouldBe` 2
       manhattanDistance (0, 3) (0, 5) `shouldBe` 2
 
-  describe "#06 binstrToNat" $ do
-    it "returns for trivials" $ do
-      binstrToNat "" `shouldBe` 0
-      binstrToNat "0" `shouldBe` 0
-      binstrToNat "1" `shouldBe` 1
-    it "returns valid binary string for powers of two" $ do
-      binstrToNat "10" `shouldBe` 2
-      binstrToNat "1000" `shouldBe` 8
-      binstrToNat ("1" ++ replicate 10 '0') `shouldBe` 1024
-      binstrToNat ("1" ++ replicate 16 '0') `shouldBe` 65536
-    it "returns valid binary string for random" $ do
-      binstrToNat "1011" `shouldBe` 11
-      binstrToNat "01111" `shouldBe` 15
-      binstrToNat "10101101" `shouldBe` 173
-      binstrToNat (replicate 8 '1') `shouldBe` 255
-      binstrToNat ("100" ++ replicate 8 '1') `shouldBe` 1279
+  describe "#06 hammingDistance" $ do
+    it "handles trivial cases" $ do
+      hammingDistance "" "" `shouldBe` 0
+      hammingDistance "ABC" "" `shouldBe` 0
+      hammingDistance "" "010" `shouldBe` 0
+    it "computes for equal-length binary strings" $ do
+      hammingDistance "0" "0" `shouldBe` 0
+      hammingDistance "1" "0" `shouldBe` 1
+      hammingDistance "1001" "0111" `shouldBe` 3
+      hammingDistance "1010001101" "1100101011" `shouldBe` 5
+    it "computes for non-equal-length binary strings" $ do
+      hammingDistance "00" "0" `shouldBe` 0
+      hammingDistance "1" "00" `shouldBe` 1
+      hammingDistance "10010101010" "0111" `shouldBe` 3
+      hammingDistance "1010001101" "11001010110101" `shouldBe` 5
+    it "computes for examples from Wikipedia" $ do
+      hammingDistance "karolin" "kathrin" `shouldBe` 3
+      hammingDistance "karolin" "kerstin" `shouldBe` 3
+      hammingDistance "kathrin" "kerstin" `shouldBe` 4
+      hammingDistance "1011101" "1001001" `shouldBe` 2
+      hammingDistance "2173896" "2233796" `shouldBe` 3
 
-  describe "#07 splitWsString" $ do
-    it "works with single WS symbols" $ do
-      splitWsString "a\nb\nc\nd" `shouldBe` ["a", "b", "c", "d"]
-      splitWsString "a\rb\rc\rd" `shouldBe` ["a", "b", "c", "d"]
-      splitWsString "a\tb\tc\td" `shouldBe` ["a", "b", "c", "d"]
-      splitWsString "a b c d" `shouldBe` ["a", "b", "c", "d"]
-    it "ignores extra WS symbols" $ do
-      splitWsString " single_one  \n" `shouldBe` ["single_one"]
-      splitWsString "  a b   c  d   " `shouldBe` ["a", "b", "c", "d"]
-      splitWsString "a\t b \t\n c\r\nd\n" `shouldBe` ["a", "b", "c", "d"]
-    it "returns empty string for empty string" $ do
-      splitWsString "" `shouldBe` []
-      splitWsString " " `shouldBe` []
-      splitWsString " \n\t\r" `shouldBe` []
+  describe "#07 stringToLines" $ do
+    it "works without newlines" $ do
+      stringToLines "" `shouldBe` []
+      stringToLines "a" `shouldBe` ["a"]
+      stringToLines "abcd\tefg" `shouldBe` ["abcd\tefg"]
+    it "splits non-empty lines" $ do
+      stringToLines "first\nsecond" `shouldBe` ["first","second"]
+      stringToLines "1\n2\n3" `shouldBe` ["1","2","3"]
+    it "handles trailing newline"$ do
+      stringToLines "\n" `shouldBe` [""]
+      stringToLines "first\n" `shouldBe` ["first"]
+    it "splits empty lines" $ do
+      stringToLines "first\n\nsecond" `shouldBe` ["first","","second"]
+      stringToLines "head\n====\n\ntext" `shouldBe` ["head","====","","text"]
+      stringToLines "\n\n\n\n" `shouldBe` ["","","",""]
 
-  describe "#08 flipType" $ do
-    it "has length equal to 40" $
-      length flipType `shouldBe` 28
+  describe "#08 filterType" $ do
+    it "has length equal to 25" $
+      length filterType `shouldBe` 25
     it "should match hash" $
-      hash flipType `shouldBe` (-1303639695465303688)
+      hash filterType `shouldBe` (-3752640889372114272)
 
-  describe "#09 unorderedContainersAuthor" $ do
-    it "has length equal to 15" $
-      length unorderedContainersAuthor `shouldBe` 12
+  describe "#09 bitvecAuthor" $ do
+    it "has length equal to 17" $
+      length bitvecAuthor `shouldBe` 17
     it "should match hash" $
-      hash unorderedContainersAuthor `shouldBe` (-6700700548817314600)
+      hash bitvecAuthor `shouldBe` (-3247285855103246144)
 
   describe "#10 pluralizeFunc" $ do
     it "pluralizes with s" $ do

@@ -4,10 +4,10 @@ module Lib
     , infoBackwards
     , countDigits
     , manhattanDistance
-    , binstrToNat
-    , splitWsString
-    , flipType
-    , unorderedContainersAuthor
+    , hammingDistance
+    , stringToLines
+    , filterType
+    , bitvecAuthor
     , pluralizeFunc
     ) where
 
@@ -31,27 +31,33 @@ countDigits x = undefined
 -- (use variables x1, y1, x2, y2 in expression instead of undefined)
 manhattanDistance (x1, y1) (x2, y2) = undefined
 
--- #06 = Complete the function to translate a binary string to natural number
---       binary string ("1001" -> 17, "" -> 0, "10" -> 2)
---       (Do not forget that String = [Char])
-binstrToNat :: String -> Word
-binstrToNat [] = 0 -- no need to change this, end of recursion
-binstrToNat ('0':rest) = undefined -- 0 is on head, rest is the tail
-binstrToNat ('1':rest) = undefined -- 1 is on head, rest is the tail
+-- #06 = Complete the function to compute Hamming distance of two
+-- strings such as "1001" and "0111" (result should be 3). But the
+-- strings not necessarily contain only 0s and 1s.
+--
+-- String is just a list of char ([Char])... Recursion for the win!
+-- Pattern matching is useful... define cases with empty lists and
+-- then use the one where x and y are heads of the lists, and xs and
+-- ys are tails.
+hammingDistance :: Num a => String -> String -> a
+hammingDistance [] [] = undefined
+hammingDistance []  _ = undefined
+hammingDistance  _ [] = undefined
+hammingDistance (x:xs) (y:ys) = undefined
 
--- #07 = Lookup a function that splits String by whitespaces
-splitWsString :: String -> [String]
-splitWsString = undefined
+-- #07 = Lookup a function that splits String by newlines
+stringToLines :: String -> [String]
+stringToLines = undefined
 
--- #08 = What is the type of function "flip"?
+-- #08 = What is the type of function "filter"?
 -- (For example for "odd" it would be "Integral a => a -> Bool")
-flipType :: String
-flipType = "<complete the type here>"
+filterType :: String
+filterType = "<fill filter type here as a string>"
 
--- #09 = Who is author of "unordered-containers" package?
+-- #09 = Who is author of "bitvec" package? (the most recent one)
 -- (For example for "QuickCheck" it would be "Koen Claessen")
-unorderedContainersAuthor :: String
-unorderedContainersAuthor = "<complete the author here>"
+bitvecAuthor :: String
+bitvecAuthor = "<fill bitvec author here as a string>"
 
 -- #10 = You need a function that returns pluralized form of
 --       English string ("letter" -> "letters", "tooth -> teeth", ...)
