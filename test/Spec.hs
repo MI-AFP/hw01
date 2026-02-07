@@ -13,7 +13,7 @@ approxEq a b = 0.0001 > abs (a - b)
 
 spec :: Spec
 spec = do
-  describe "#01 trapezoidArea" $ do
+  describe "#01 convexRegularPolygonArea" $ do
     it "computes area of triangle" $ do
       approxEq (convexRegularPolygonArea 3 9) 35.0740 `shouldBe` True
       approxEq (convexRegularPolygonArea 3 5) 10.8253 `shouldBe` True
@@ -116,14 +116,14 @@ spec = do
   describe "#08 filterType" $ do
     it "has length equal to 25" $
       length filterType `shouldBe` 25
-    it "should match hash" $
-      hash filterType `shouldBe` (-3752640889372114272)
+    it "has matching hash" $
+      hash filterType `shouldBe` 7581312357684372769
 
   describe "#09 bitvecAuthor" $ do
     it "has length equal to 17" $
       length bitvecAuthor `shouldBe` 17
-    it "should match hash" $
-      hash bitvecAuthor `shouldBe` (-3247285855103246144)
+    it "has matching hash" $
+      hash bitvecAuthor `shouldBe` 4706615539436592459
 
   describe "#10 pluralizeFunc" $ do
     it "pluralizes with s" $ do

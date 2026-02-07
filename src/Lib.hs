@@ -11,7 +11,9 @@ module Lib
     , pluralizeFunc
     ) where
 
+
 -- #01 = Area of convex regular polygon (check tests if not sure; use Pi from Prelude)
+convexRegularPolygonArea :: Floating a => a -> a -> a
 convexRegularPolygonArea n s = undefined
 
 -- #02 = Write boolean expression (avoid if-then-else) to check if year is leap
@@ -25,10 +27,12 @@ infoBackwards str = undefined
 -- #04 = Count number of digits of given integer
 -- (It can be done just by looking up suitable functions.
 --  Try it WITHOUT conditions and recursion!)
+countDigits :: Integer -> Int
 countDigits x = undefined
 
 -- #05 = Return Manhattan distance of 2 2D points
 -- (use variables x1, y1, x2, y2 in expression instead of undefined)
+manhattanDistance :: (Num a, Ord a) => (a, a) -> (a, a) -> a
 manhattanDistance (x1, y1) (x2, y2) = undefined
 
 -- #06 = Complete the function to compute Hamming distance of two
@@ -52,12 +56,12 @@ stringToLines = undefined
 -- #08 = What is the type of function "filter"?
 -- (For example for "odd" it would be "Integral a => a -> Bool")
 filterType :: String
-filterType = "<fill filter type here as a string>"
+filterType = undefined
 
 -- #09 = Who is author of "bitvec" package? (the most recent one)
 -- (For example for "QuickCheck" it would be "Koen Claessen")
 bitvecAuthor :: String
-bitvecAuthor = "<fill bitvec author here as a string>"
+bitvecAuthor = undefined
 
 -- #10 = You need a function that returns pluralized form of
 --       English string ("letter" -> "letters", "tooth -> teeth", ...)
